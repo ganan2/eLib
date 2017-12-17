@@ -1,4 +1,4 @@
-package com.elib.api.dao;
+package com.elib.api.repositories;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 

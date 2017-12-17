@@ -16,16 +16,16 @@ public class Message implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long messageId;
+	private Long messageId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
-	StoryMember storyMember;
+	private StoryMember storyMember;
 	
 	@Column(nullable = false)
-	String message;
+	private String message;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "chatId")
-	ChatTemplate chatTemplate;
+	private ChatTemplate chatTemplate;
 }

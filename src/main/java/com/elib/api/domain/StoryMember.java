@@ -19,21 +19,21 @@ public class StoryMember implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long storyMemberId;
+	private Long storyMemberId;
 	
 	@Column(nullable = false)
-	String firstName;
+	private String firstName;
 	
 	@Column(nullable = false)
-	String lastName;
+	private String lastName;
 	
 	@Column(nullable = false)
-	String email;
+	private String email;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "chatId")
-	ChatTemplate chatTemplate;
+	private ChatTemplate chatTemplate;
 
 	@OneToMany(mappedBy = "storyMember", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	List<Message> message;
+	private List<Message> message;
 }
