@@ -108,10 +108,12 @@
                 <input id="repeat-password" name="repeat-password" type="password" placeholder="Repeat password"
                        class="form-control input-md" required="required"/>
                 <span class="help-block" th:text="#{signup.h1.password.confirm.span}"/>
+                <a th:href="@{/login}" th:text="#{login.already.user}" />
             </div>
         </div>
     </form>
 </div>
+
 <!-- Button (Double) -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1id"></label>

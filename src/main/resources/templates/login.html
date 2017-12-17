@@ -40,19 +40,18 @@
          <div class="form-group">
             <label class="col-md-4 control-label" for="password" th:text="#{login.h1.password}"/>
             <div class="col-md-4">
+            	<a th:href="@{/forgotmypassword}" th:text="#{login.forgot.password.text}" />
                 <input id="password" name="password" type="password" placeholder="Password"
                        class="form-control input-md" required=""/>
                 <span class="help-block" th:text="#{login.h1.password.span}"/>
-                <a th:href="@{/forgotmypassword}" th:text="#{login.forgot.password.text}" />
+                <a th:href="@{/signup}" th:text="#{login.new.user}" />
             </div>
-         </div>
-     
+         </div>     
     </form>
 </div>
 <!-- Button (Double) -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1id"></label>
-
             <div class="col-md-8">
                 <button type="submit" class="btn btn-success" th:text="#{login.h1.login.button}" th:href="@{/login}"/>
             </div>
