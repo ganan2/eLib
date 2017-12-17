@@ -1,7 +1,7 @@
 <!-- https://bootsnipp.com/snippets/vlOZ6 -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/loginHeader :: common-login-header" />
+<head th:replace="common/header :: common-header" />
 <body>
 <div class="container">
     <div class="text-center">
@@ -24,16 +24,15 @@
                 </div>
             </div>
     </div> 
-    <form class="form-horizontal" method="post"
-          th:action="@{/sample}">
+    <form class="form-horizontal" method="post" th:action="@{/login}">
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="password" th:text="#{login.h1.email}"/>
-
             <div class="col-md-4">
                 <input id="email" name="email" type="email" placeholder="Email"
                        class="form-control input-md" required=""/>
                 <span class="help-block" th:text="#{login.h1.email.span}"/>
+                <input type="checkbox" name="remember-me" id="remember-me" th:text="#{login.remember.me}"/> &nbsp; 
             </div>
          </div>
 		<!-- Text input-->
@@ -56,7 +55,5 @@
                 <button type="submit" class="btn btn-success" th:text="#{login.h1.login.button}" th:href="@{/login}"/>
             </div>
         </div>
-<div th:replace="common/loginHeader :: before-body-scripts" />
-</body>
+<div th:replace="common/header :: before-body-scripts" /></body>
 </html>
-
