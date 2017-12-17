@@ -45,15 +45,15 @@
                 <span class="help-block" th:text="#{login.h1.password.span}"/>
                 <a th:href="@{/signup}" th:text="#{login.new.user}" />
             </div>
-         </div>     
-    </form>
-</div>
-<!-- Button (Double) -->
+         </div>
+         <!-- Button (Double) -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1id"></label>
             <div class="col-md-8">
                 <button type="submit" class="btn btn-success" th:text="#{login.h1.login.button}" th:href="@{/login}"/>
             </div>
-        </div>
+        </div>     
+    </form>
+</div>
 <div th:replace="common/header :: before-body-scripts" /></body>
 </html>

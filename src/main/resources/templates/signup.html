@@ -106,10 +106,7 @@
                 <a th:href="@{/login}" th:text="#{login.already.user}" />
             </div>
         </div>
-    </form>
-</div>
-
-<!-- Button (Double) -->
+        <!-- Button (Double) -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="button1id"></label>
 
@@ -118,5 +115,7 @@
                 <a id="cancel" name="cancel" class="btn btn-danger" th:href="@{/login}" th:text="#{signup.button.cancel}"/>
             </div>
         </div>
+    </form>
+</div>
 <div th:replace="common/header :: before-body-scripts" /></body>
 </html>
