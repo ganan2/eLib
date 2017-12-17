@@ -21,13 +21,13 @@
                 </div>
     </div> 
     <form class="form-horizontal" method="post"
-          action="#">
+          th:action="@{/signup}">
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="name" th:text="#{signup.h1.firstname}"/>
 
             <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="First Name" class="form-control input-md" required="*"/>
+                <input id="name" name="name" type="text" placeholder="First Name" class="form-control input-md" required="required"/>
             </div>
         </div>
 		<!-- Text input-->
@@ -35,7 +35,7 @@
             <label class="col-md-4 control-label" for="name" th:text="#{signup.h1.lastname}"/>
 
             <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Last Name" class="form-control input-md" required="*"/>
+                <input id="name" name="name" type="text" placeholder="Last Name" class="form-control input-md" required="required"/>
             </div>
         </div>
         <!-- Select Date Of Birth-->
@@ -43,21 +43,21 @@
             <label class="col-md-4 control-label" for="name" th:text="#{signup.dob.month}"/>
 
             <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Month" class="form-control input-md" required="*"/>
+                <input id="name" name="name" type="text" placeholder="Month" class="form-control input-md" required="required"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label" for="name" th:text="#{signup.dob.day}"/>
 
             <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Day" class="form-control input-md" required="*"/>
+                <input id="name" name="name" type="text" placeholder="Day" class="form-control input-md" required="required"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label" for="name" th:text="#{signup.dob.year}"/>
 
             <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Year" class="form-control input-md" required="*"/>
+                <input id="name" name="name" type="text" placeholder="Year" class="form-control input-md" required="required"/>
             </div>
         </div>
         <!-- Gender Input -->
@@ -90,7 +90,7 @@
 
             <div class="col-md-4">
                 <input id="email" name="email" type="email" placeholder="Email"
-                       class="form-control input-md" required="*"/>
+                       class="form-control input-md" required="required"/>
                 <span class="help-block" th:text="#{signup.h1.email.span}"/>
             </div>
          </div>
@@ -98,7 +98,7 @@
             <label class="col-md-4 control-label" for="password" th:text="#{signup.h1.password}"/>
             <div class="col-md-4">
                 <input id="password" name="password" type="password" placeholder="Password"
-                       class="form-control input-md" required="*"/>
+                       class="form-control input-md" required="required"/>
                 <span class="help-block" th:text="#{signup.h1.password.span}"/>
             </div>
          </div>
@@ -106,11 +106,10 @@
          <label class="col-md-4 control-label" for="password" th:text="#{signup.h1.password.confirm}"/>
             <div class="col-md-4">
                 <input id="repeat-password" name="repeat-password" type="password" placeholder="Repeat password"
-                       class="form-control input-md" required="*"/>
+                       class="form-control input-md" required="required"/>
                 <span class="help-block" th:text="#{signup.h1.password.confirm.span}"/>
             </div>
         </div>
-        
     </form>
 </div>
 <!-- Button (Double) -->
@@ -118,9 +117,8 @@
             <label class="col-md-4 control-label" for="button1id"></label>
 
             <div class="col-md-8">
-                <button type="submit" class="btn btn-success">Save</button>
-                <a id="cancel" name="cancel" class="btn btn-danger" href="#">
-                    Cancel</a>
+                <button type="submit" class="btn btn-success" th:text="#{signup.button.save}"/>
+                <a id="cancel" name="cancel" class="btn btn-danger" href="#" th:text="#{signup.button.cancel}"/>
             </div>
         </div>
 <div th:replace="common/loginHeader :: before-body-scripts" />

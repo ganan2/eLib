@@ -25,7 +25,7 @@
             </div>
     </div> 
     <form class="form-horizontal" method="post"
-          th:action="@{/login}">
+          th:action="@{/sample}">
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="password" th:text="#{login.h1.email}"/>
@@ -43,6 +43,7 @@
                 <input id="password" name="password" type="password" placeholder="Password"
                        class="form-control input-md" required=""/>
                 <span class="help-block" th:text="#{login.h1.password.span}"/>
+                <a th:href="@{/forgotmypassword}" th:text="#{login.forgot.password.text}" />
             </div>
          </div>
      
