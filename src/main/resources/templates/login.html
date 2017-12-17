@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/loginHeader :: common-login-header" />
+<body>
+<div class="container">
+    <div class="text-center">
+        <h1 class="nice">ELib Login Form</h1>
+    </div>
+    <form class="form-horizontal" method="post"
+          action="#">
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Email</label>
+
+            <div class="col-md-4">
+                <input id="email" name="email" type="email" placeholder="Email"
+                       class="form-control input-md" required=""/>
+                <span class="help-block">Please type in your email</span>
+            </div>
+         </div>
+		<!-- Text input-->
+         <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Password</label>
+            <div class="col-md-4">
+                <input id="password" name="password" type="password" placeholder="Password"
+                       class="form-control input-md" required=""/>
+                <span class="help-block">Please type in your password (6 characters of more)</span>
+            </div>
+         </div>
+     
+    </form>
+</div>
+<!-- Button (Double) -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="button1id"></label>
+
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-success">Login</button>
+                <a id="cancel" name="cancel" class="btn btn-danger" href="#">
+                    Cancel</a>
+            </div>
+        </div>
+<div th:replace="common/loginHeader :: before-body-scripts" />
+</body>
+</html>
+
