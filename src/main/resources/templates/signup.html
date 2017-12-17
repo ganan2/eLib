@@ -4,7 +4,7 @@
 <body>
 <div class="container">
     <div class="text-center">
-        <h1 class="nice">ELib Registration Form</h1>
+        <h1 class="nice" th:text="#{signup.h1.title}"/>
     </div>
     <div th:if="${signedUp != null}">
                 <div th:if="${signedUp == 'true'}" class="alert alert-success alert-dismissible" role="alert">
