@@ -1,5 +1,7 @@
 package com.elib.api.service.serviceImpl;
 
+import com.elib.api.domain.User;
+import com.elib.api.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +10,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.elib.api.domain.User;
-import com.elib.api.repositories.UserRepository;
-
 @Service
-public class UserSecurityServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     /** The application logger */
-    private static final Logger LOG = LoggerFactory.getLogger(UserSecurityServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;

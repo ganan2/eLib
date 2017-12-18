@@ -1,9 +1,6 @@
 package com.elib.api.config;
 
-import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.List;
-
+import com.elib.api.service.serviceImpl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,69 +11,69 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.elib.api.service.serviceImpl.UserSecurityServiceImpl;
+import java.security.SecureRandom;
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    /**
+     * The encryption SALT.
+     */
+    private static final String SALT = "yertyvbn08w43hfuoe@$^U";
+    /**
+     * Public URLs.
+     */
+    private static final String[] PUBLIC_MATCHERS = {
+            "/webjars/**",
+            "/css/**",
+            "/js/**",
+            "/images/**",
+            "/",
+            "/about/**",
+            "/contact/**",
+            "/error/**/*",
+            "/console/**",
+            "/signup"
+    };
+
     @Autowired
     private Environment env;
-    
-    @Autowired
-    private UserSecurityServiceImpl userSecurityServiceImpl;
 
-    /** The encryption SALT. */
-    private static final String SALT = "yertyvbn08w43hfuoe@$^U";
-    //fdalkjalk;3jlwf00sfaof
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12, new SecureRandom(SALT.getBytes()));
     }
 
-    /** Public URLs. */
-    private static final String[] PUBLIC_MATCHERS = {
-    		// these are publicly accessible URLS. 
-    		//One needs to be careful what needs to be public.
-            "/webjars/**",
-            "/css/**",		//static content
-            "/js/**",		//static content
-            "/images/**",	//static content
-            "/",			//home page
-            "/about/**",
-            "/contact/**",
-            "/error/**/*",
-            "/console/**",
-            "/signup"
-//            ForgotMyPasswordController.FORGOT_PASSWORD_URL_MAPPING,
-//            ForgotMyPasswordController.CHANGE_PASSWORD_PATH,
-    };
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-    	List<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
+        List<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
         if (activeProfiles.contains("dev")) {
             http.csrf().disable(); /** Required to disable while developing H2 */
             http.headers().frameOptions().disable();
         }
-        
+
         http
-                .authorizeRequests()						// authorize all http security
-                .antMatchers(PUBLIC_MATCHERS).permitAll()	// No need of authentication for pu
-                .anyRequest().authenticated()				// Authenticate everything else
-                .and()										
-                .formLogin().loginPage("/login").defaultSuccessUrl("/index")	// After successful login, redirect the users to /payload
-                .failureUrl("/login?error").permitAll()		// Send a getResuest() to the login URL with the parameter error
+                .authorizeRequests()
+                .antMatchers(PUBLIC_MATCHERS).permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .logout().permitAll();						// Allow anyone to logout without authentication
+                .formLogin().loginPage("/login").defaultSuccessUrl("/index")
+                .failureUrl("/login?error").permitAll()
+                .and()
+                .logout().permitAll();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(userSecurityServiceImpl)
+                .userDetailsService(userDetailsServiceImpl)
                 .passwordEncoder(passwordEncoder());
     }
 }
