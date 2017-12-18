@@ -21,7 +21,7 @@ public class UserRole {
         this.user = user;
         this.role = role;
     }
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;

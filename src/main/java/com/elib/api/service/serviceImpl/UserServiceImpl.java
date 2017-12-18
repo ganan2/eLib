@@ -19,26 +19,26 @@ import com.elib.api.service.UserService;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
-	
-	private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
+
+    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private RoleRepository roleRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-	
-	public void save(User user) {
-		userRepository.save(user);
+
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     public User userRepository(String email) {
         return userRepository.findByEmail(email);
     }
-    
+
     public User createUser(User user, Set<UserRole> userRoles) {
         User localUser = userRepository.findByUsername(user.getUsername());
 
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService{
             user.setPassword(encryptedPassword);
 
             for (UserRole ur : userRoles) {
-            	roleRepository.save(ur.getRole());
+                roleRepository.save(ur.getRole());
             }
 
             user.getUserRoles().addAll(userRoles);
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService{
 
         return localUser;
     }
-    
+
     public boolean checkUserExists(String username, String email){
         if (checkUsernameExists(username) || checkEmailExists(email)) {
             return true;
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService{
 
         return false;
     }
-    
+
     public boolean checkEmailExists(String email) {
         if (null != findByEmail(email)) {
             return true;
@@ -84,14 +84,14 @@ public class UserServiceImpl implements UserService{
         return false;
     }
 
-	@Override
-	public User findByUsername(String username) {
+    @Override
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
-	}
+    }
 
-	@Override
-	public User findByEmail(String email) {
+    @Override
+    public User findByEmail(String email) {
         return userRepository.findByUsername(email);
-	}
+    }
 
 }
