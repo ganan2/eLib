@@ -33,7 +33,7 @@ public class SignUpController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public String signupPost(@ModelAttribute("user") User user, Model model) {
+    public String signup(@ModelAttribute("user") User user, Model model) {
         if (userService.checkUserExists(user.getUsername(), user.getEmail())) {
 
             if (userService.checkEmailExists(user.getEmail())) {
