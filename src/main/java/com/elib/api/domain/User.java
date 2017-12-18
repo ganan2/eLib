@@ -1,193 +1,150 @@
 package com.elib.api.domain;
 
+import com.elib.api.domain.security.Authority;
+import com.elib.api.domain.security.UserRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.elib.api.domain.security.Authority;
-import com.elib.api.domain.security.UserRole;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Transactional
 public class User implements UserDetails {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userId", nullable = false, updatable = false)
+    private Long userId;
+    private String username;
+    private String password;
+    private String firstName;
+    private String lastName;
 
-	@Column(nullable = false, unique = true)
-	private String username;
-	
-	@Column(nullable = false, unique = true)
-	private String firstName;
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+    private String phone;
 
-	@Column(nullable = false, unique = true)
-	private String lastName;
+    private boolean enabled=true;
 
-	@Column(nullable = false, unique = true)
-	private String month;
-	
-	@Column(nullable = false, unique = true)
-	private String day;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<UserRole> userRoles = new HashSet<>();
 
-	@Column(nullable = false, unique = true)
-	private String year;
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
 
-	@Column(nullable = false, unique = true)
-	private String gender;
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
 
-	@Column(nullable = false, unique = true)
-	private String email;
+    public Long getUserId() {
+        return userId;
+    }
 
-	@Column(nullable = false, unique = true)
-	private String password;
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnore
-	private Set<UserRole> userRoles = new HashSet<>();
+    public String getUsername() {
+        return username;
+    }
 
-	private boolean enabled = true;
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public Long getUserId() {
-		return userId;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getMonth() {
-		return month;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setMonth(String month) {
-		this.month = month;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public String getDay() {
-		return day;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setDay(String day) {
-		this.day = day;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getYear() {
-		return year;
-	}
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	public void setYear(String year) {
-		this.year = year;
-	}
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("userId=").append(userId);
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", phone='").append(phone).append('\'');
+        sb.append(", enabled=").append(enabled);
+        sb.append(", userRoles=").append(userRoles);
+        sb.append('}');
+        return sb.toString();
+    }
 
-	public String getGender() {
-		return gender;
-	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
+        return authorities;
+    }
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
-	}
-
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<GrantedAuthority> authorities = new HashSet<>();
-		userRoles.forEach(ur -> authorities.add(new Authority(ur.getRole().getName())));
-		return authorities;
-	}
-	
-	@Override
-	public String getUsername() {
-		return null;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", month=" + month
-				+ ", day=" + day + ", year=" + year + ", gender=" + gender + ", email=" + email + ", password="
-				+ password + "]";
-	}
-
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
 }

@@ -1,121 +1,110 @@
+<!-- https://bootsnipp.com/snippets/vlOZ6 -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/header :: common-header" />
+<head th:replace="common/header :: common-header"/>
 <body>
 <div class="container">
-    <div class="text-center">
-        <h1 class="nice" th:text="#{signup.h1.title}"/>
+    <div class="row main">
+        <div class="panel-heading">
+            <div class="panel-title text-center">
+                <h1 class="title">Sign Up</h1>
+                <hr />
+            </div>
+        </div>
+        <div class="main-login main-center">
+            <form class="form-horizontal" method="post" th:action="@{/signup}">
+
+                <div class="form-group">
+                    <label for="firstName" class="cols-sm-2 control-label">First Name</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${user.firstName}" id="firstName" name="firstName" roleId="firstname"  placeholder="Enter your first name" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName" class="cols-sm-2 control-label">Last Name</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${user.lastName}" id="lastName" name="lastName" roleId="lastName"  placeholder="Enter your last name" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="cols-sm-2 control-label">Phone</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${user.phone}" id="phone" name="phone" roleId="phone"  placeholder="xxx-xxx-xxxx" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="cols-sm-2 control-label">Your Email</label><span class="bg-danger pull-right" th:if="${emailExists}">Email already exists</span>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${user.email}" id="email" name="email" roleId="email"  placeholder="Enter your Email" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">Username</label><span class="bg-danger pull-right" th:if="${usernameExists}">Username already exists</span>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" th:value="${user.username}" id="username" name="username" roleId="username"  placeholder="Enter your Username" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">Password</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" th:value="${user.password}" id="password" name="password" roleId="password"  placeholder="Enter your Password" required="required"/>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input id="showPassword" type="checkbox" />Show Password
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">Confirm Secret</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="confirm" roleId="confirm"
+                                   placeholder="Confirm your Secret" required="required"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Sign up!</button>
+                </div>
+
+                <hr />
+
+                <div class="form-group ">
+                    <a  class="btn btn-info btn-lg btn-block login-button" th:href="@{/}">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div th:if="${signedUp != null}">
-                <div th:if="${signedUp == 'true'}" class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">x</span>
-                    </button>
-                    <p th:text="#{signup.profile.created.success}" class="text-center"/>
-                </div>
-                <div th:if="${signedUp == 'false'}" class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">x</span>
-                    </button>
-                    <p th:text="${message}" class="text-center"/>
-                </div>
-    </div> 
-    <form class="form-horizontal" method="post" th:action="@{/signup}">
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="name" th:text="#{signup.h1.firstname}"/>
-
-            <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="First Name" class="form-control input-md" required="required"/>
-            </div>
-        </div>
-		<!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="name" th:text="#{signup.h1.lastname}"/>
-
-            <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Last Name" class="form-control input-md" required="required"/>
-            </div>
-        </div>
-        <!-- Select Date Of Birth-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="name" th:text="#{signup.dob.month}"/>
-
-            <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Month" class="form-control input-md" required="required"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="name" th:text="#{signup.dob.day}"/>
-
-            <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Day" class="form-control input-md" required="required"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="name" th:text="#{signup.dob.year}"/>
-
-            <div class="col-md-4">
-                <input id="name" name="name" type="text" placeholder="Year" class="form-control input-md" required="required"/>
-            </div>
-        </div>
-        <!-- Gender Input -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="checkboxes" th:text="#{signup.h1.gender}"/>
-
-            <div class="col-md-4">
-                <div class="checkbox">
-                    <label>
-                        <input name="genderboxes" id="genderboxes-0" value="1" type="radio" th:text="#{signup.h1.male}"/>
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input name="genderboxes" id="genderboxes-1" value="2" type="radio" th:text="#{signup.h1.female}"/>
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input name="genderboxes" id="genderboxes-2" value="3" type="radio" th:text="#{signup.h1.other}"/>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <!-- Email and Password input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="password" th:text="#{signup.h1.email}"/>
-
-            <div class="col-md-4">
-                <input id="email" name="email" type="email" placeholder="Email"
-                       class="form-control input-md" required="required"/>
-            </div>
-         </div>
-         <div class="form-group">
-            <label class="col-md-4 control-label" for="password" th:text="#{signup.h1.password}"/>
-            <div class="col-md-4">
-                <input id="password" name="password" type="password" placeholder="Password"
-                       class="form-control input-md" required="required"/>
-                <span class="help-block" th:text="#{signup.h1.password.span}"/>
-            </div>
-         </div>
-         <div class="form-group">
-         <label class="col-md-4 control-label" for="password" th:text="#{signup.h1.password.confirm}"/>
-            <div class="col-md-4">
-                <input id="repeat-password" name="repeat-password" type="password" placeholder="Repeat password"
-                       class="form-control input-md" required="required"/>
-                <a th:href="@{/login}" th:text="#{login.already.user}" />
-            </div>
-        </div>
-        <!-- Button (Double) -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="button1id"></label>
-
-            <div class="col-md-8">
-                <button type="submit" class="btn btn-success" th:text="#{signup.button.save}"/>
-                <a id="cancel" name="cancel" class="btn btn-danger" th:href="@{/login}" th:text="#{signup.button.cancel}"/>
-            </div>
-        </div>
-    </form>
 </div>
-<div th:replace="common/header :: before-body-scripts" /></body>
+
+
+<div th:replace="common/header :: body-bottom-scripts" />
+</body>
 </html>
