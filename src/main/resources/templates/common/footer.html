@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="common-footer">
+    <div class="footer-section">
+
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 ">
+                    <div class="copyright-text">
+                        <p>Copyright © 2018 Digital All Rights Reserved</p>
+                    </div>
+                </div> <!-- End Col -->
+                <div class="col-sm-6  ">
+                    <div class="copyright-text pull-right">
+                        <p><a href="#">Home</a> | <a href="#">Privacy</a> |<a href="#" th:text="#{footer.terms.conditions}"> ... </a></p>
+                    </div>
+
+                </div> <!-- End Col -->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
