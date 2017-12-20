@@ -6,11 +6,20 @@
 
 <div th:replace="common/navbar :: common-navbar"/>
 
-<div class="container">
+<div class="jumbotron jumbotron-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="h1">Welcome to eLib</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container clearfix">
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>Login page</h1>
+            <legend><span class="glyphicon glyphicon-log-in"></span> Login </legend>
             <form th:action="@{/login}" method="post">
                 <div th:if="${param.error}">
                     <div class="alert alert-danger">
@@ -22,6 +31,7 @@
                         You have been logged out.
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="username">Username</label>:
                     <input type="text"
@@ -45,13 +55,13 @@
                             <input type="submit"
                                    name="login-submit"
                                    id="login-submit"
-                                   class="form-control btn btn-info"
+                                   class="form-control btn btn-primary pull-right"
                                    value="Log In"/>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <span>New user? <a href="/" th:href="@{/signup}">Register here</a></span>
+                    <span>New user? <a th:href="@{/signup}">Register here</a></span>
                 </div>
             </form>
         </div>
