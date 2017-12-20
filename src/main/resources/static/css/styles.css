@@ -1,17 +1,85 @@
 @charset "ISO-8859-1";
 
 html {
-        width: 980px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: auto;
-        margin-bottom: auto;
+        overflow:auto;
 }
 
 body {
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 50px;
+    padding-bottom: 12px;
+    font-size: 12px;
+    font-family: "roboto";
 }
+
+/* Custom */
+div {
+    display: block;
+}
+
+#left-content .left-subparams{
+    overflow: visible;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-right: 48px;
+}
+
+.content-container .left_content {
+    flex: 1 0 0px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0px;
+}
+
+.content-container .right_content {
+    float: none;
+
+}
+
+.left_content, .right_content {
+    word-wrap: break-word;
+}
+
+.right-subparams {
+    width: 600px !important;
+}
+
+.content-container{
+    width: 980px;
+    margin: auto;
+
+    padding-right=20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.container-left{
+    padding-right: 48px;
+}
+
+.container-right{
+    width: 400px;
+}
+
+.navbar li:hover{
+background-color: #8B0000;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+
+.hidden-thing {
+  position: absolute;
+  left: 100%;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+}
+
+/* Custom ends */
 
 /* Time Line Section*/
 .timeline {
@@ -267,71 +335,24 @@ i {
     color: #aece61;
 }
 
-
-/* Footer */
-.footer {
-    position: relative;
-    background-color: #000000;
-    color: #7d7975;
-    padding: 5px 0 5px;
-    font-size:14px;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-.footer p {
-    line-height:15px;
-    color : #fff;
-}
-.footer h5 {
-    font-size: 14px;
-    font-weight: 700;
-    color: #ffffff  ;
-    position: relative;
-    padding-bottom: 5px;
-}
-.footer h5:after {
-    content: '';
-    display: block;
-    margin: 5px 0 0;
-    width: 40%;
-    height: 1px;
-    background-color: #1e1d22 ;
-}
-
-.footer ul {
-    list-style: none;
-    line-height:35px;
-    margin: 0px;
-    color:#fff;
-
-}
-.footer a {
-    color:# ;
-
-}
-.footer a:hover {
-    color: #aece61 ;
-}
-
 /*footer bottom */
 .footer-bottom {
-    padding-top: 0px;
-    padding-bottom: 10px;
+     padding-top: 0px;
+     padding-bottom: 10px;
 
-    border-top: 1px solid #2f2f33 ;
-    background: #000000;
+     border-top: 1px solid #2f2f33 ;
+     background: #000000;
 
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
+     position: absolute;
+     right: 0;
+     bottom: 0;
+     left: 0;
 
-    position:fixed
 }
+
 .copyright-text p {
     color: #ffffff;
-    margin-top: 12px;
+    margin-top: 5px;
     margin-bottom: 0;
     font-size:12px;
 }
@@ -349,10 +370,15 @@ i {
 background: #358CCE;
 color: #FFF;
 border-radius: 0px;
+margin-left: 20px;
+margin-right: 20px;
+margin-top: 20px;
+margin-bottom: 20px;
 }
 
-.jumbotron-sm { padding-top: 24px;
-padding-bottom: 24px;
+.jumbotron-sm {
+padding-top: 1px;
+padding-bottom: 1px;
 }
 
 .jumbotron small {
@@ -360,5 +386,6 @@ color: #FFF;
 }
 
 .h1 small {
-font-size: 24px;
+font-size: 12px;
+margin: 20px;
 }
