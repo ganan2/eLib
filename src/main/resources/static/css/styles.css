@@ -7,7 +7,6 @@ html {
 
 body {
     padding-top: 50px;
-    padding-bottom: 12px;
     font-size: 12px;
 }
 
@@ -20,6 +19,13 @@ input {
 }
 
 /* Custom */
+
+.elib-caption {
+    font-size: 24px;
+    font-color: #fff;
+    text-align: center;
+}
+
 .btn-primary, .btn-primary:active {
     background-color: #149dcc;
     border-color: #149dcc;
