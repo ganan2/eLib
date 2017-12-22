@@ -15,17 +15,19 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a th:text="#{navbar.home.text}" href="/"></a></li>
+                <li><a class="glyphicon glyphicon-home" href="/"></a></li>
                 <li><a th:text="#{navbar.about.text}" href="/about"></a></li>
                 <li><a th:text="#{navbar.contact.text}" href="/contact"></a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li th:if="${#authorization.expression('!isAuthenticated()')}">
-                    <a th:href="@{/login}" th:text="#{navbar.login.text}"/>
+                    <form id="login-form" th:action="@{/index}" role="form" class="navbar-form">
+                        <button type="no-action" th:text="#{navbar.login.text}" class="btn btn-warning"/>
+                    </form>
                 </li>
                 <li th:if="${#authorization.expression('isAuthenticated()')}">
-                    <form id="f" th:action="@{/logout}" method="post" role="form" class="navbar-form">
+                    <form id="logout-form" th:action="@{/logout}" method="post" role="form" class="navbar-form">
                         <button type="submit" th:text="#{navbar.logout.text}" class="btn btn-primary"/>
                     </form>
                 </li>

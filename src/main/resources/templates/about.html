@@ -3,45 +3,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common/header :: common-header"/>
 <body>
+<!-- Top most container: Includes everything  -->
+<div class="container-1" id="overall">
+    <div th:replace="common/navbar :: common-navbar"/>
+    <!-- Global container: includes everything other than headers or navbar & footers -->
+    <div class="globalContainer" id="globalContent">
+        <!-- Content container: Includes padding between headers or navbars and footers-->
+        <div class="content-container clearfix" id="content">
 
-<div th:replace="common/navbar :: common-navbar"/>
-
-<div class="jumbotron jumbotron-sm">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-lg-12">
-                <h1 class="h1">Who we are</h1>
+            <div class="row">
+                <legend><span class="glyphicon glyphicon-hand-right"></span> Who we are</legend>
             </div>
-        </div>
-    </div>
-</div>
-<div class="container marketing">
-    <div class="col-md-8">
+            <div class="container marketing">
+                <div class="col-xs-8">
 
-    </div>
-    <div class="col-md-2">
-        <div class="row" align="center">
-            <a><img class="img-circle"
-                    src="http://en.gravatar.com/userimage/125909534/d0c81421bbff26f2d33b1b3f85955fa5.jpg?size=200"
-                    alt="Girish Ananda" width="140" height="140"/>
-            </a>
-            <h2>Girish Ananda
-                <small class="member-title">, MS</small>
-            </h2>
-            <div class="span4 collapse-group">
-                <p class="collapse text-justify" th:text="#{copy.project.lead.intro}"></p>
-                <p><a class="btn btn-primary btn-collapse" href="#" role="button"
-                      th:text="#{copy.viewdetails.button}"></a>
-                </p>
-            </div>
-        </div><!-- /.row -->
+                </div>
+                <div class="col-xs-2">
+                    <div class="row" align="center">
 
-    </div><!-- /.container -->
-</div>
+                    </div><!-- /.row -->
+                </div>
+            </div><!-- Marketing container -->
+        </div> <!-- Content container -->
+    </div> <!-- Global container ends -->
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <div th:replace="common/header :: before-body-scripts"/>
+    <!-- Footer -->
+    <!-- Footer ends -->
+    <!-- Body bottom scripts  -->
+    <div th:replace="common/header :: body-bottom-scripts"/>
+    <!-- Body bottom scripts end  -->
+</div> <!-- Container-1: Top most container ends -->
 </body>
 </html>

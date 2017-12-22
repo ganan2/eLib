@@ -1,17 +1,42 @@
 @charset "ISO-8859-1";
 
 html {
-        overflow:auto;
+    overflow:auto;
+    font-family: roboto;
 }
 
 body {
     padding-top: 50px;
     padding-bottom: 12px;
     font-size: 12px;
-    font-family: "roboto";
+}
+
+input,textarea,.uneditable-input{
+    width:206px;
+}
+
+input {
+    width: 100% !important
 }
 
 /* Custom */
+.navbar-nav>li>a {
+    color : #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color : #fff;
+}
+
+.btn .btn-primary {
+    position: absolute;
+}
+
+.button {
+	display:block;
+	text-align:center;
+}
+
 div {
     display: block;
 }
@@ -63,7 +88,7 @@ div {
 }
 
 .navbar li:hover{
-background-color: #8B0000;
+background-color: #4f4f4f;
 }
 
 .no-gutter > [class*='col-'] {
