@@ -20,6 +20,51 @@ input {
 }
 
 /* Custom */
+.btn-primary, .btn-primary:active {
+    background-color: #149dcc;
+    border-color: #149dcc;
+    color: #ffffff;
+}
+
+.btn {
+    font-weight: 500;
+    border-width: 0px;
+    font-style: normal;
+    letter-spacing: 1px;
+    margin: .4rem .8rem;
+    white-space: normal;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: 1rem 3rem;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word;
+}
+
+.button {
+    font-weight: 500;
+    border-width: 0px;
+    font-style: normal;
+    letter-spacing: 1px;
+    white-space: normal;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word;
+}
+
+.display-4 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
+}
+
 .navbar-nav>li>a {
     color : #fff;
 }
@@ -87,9 +132,7 @@ div {
     width: 400px;
 }
 
-.navbar li:hover{
-background-color: #4f4f4f;
-}
+.navbar li:hover{}
 
 .no-gutter > [class*='col-'] {
     padding-right:0;
