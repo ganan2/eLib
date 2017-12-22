@@ -1,13 +1,27 @@
+<!-- https://bootsnipp.com/snippets/vlOZ6 -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common/header :: common-header"/>
 <body>
+<!-- Top most container: Includes everything  -->
+<div class="container-1" id="overall">
+    <div th:replace="common/navbar :: common-navbar"/>
+    <!-- Global container: includes everything other than headers or navbar & footers -->
+    <div class="globalContainer" id="globalContent">
+        <!-- Content container: Includes padding between headers or navbars and footers-->
+        <div class="content-container clearfix" id="content">
+            <div th:replace="common/timeline :: common-timeline"/>
+        </div> <!-- Content container ends -->
+    </div> <!-- Global container ends -->
+git
+    <!-- Footer -->
+    <!-- Footer ends -->
 
-<div th:replace="common/navbar :: common-navbar"/>
-<div th:replace="common/timeline :: common-timeline"/>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<div th:replace="common/header :: before-body-scripts"/>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <div th:replace="common/header :: before-body-scripts"/>
+    <!-- Body bottom scripts end  -->
+</div> <!-- Container-1: Top most container ends -->
 </body>
 </html>
