@@ -107,6 +107,7 @@
                             <div class="form-group"
                                  th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
                                 <input id="terms"
+                                       class="checkbox"
                                        type="checkbox"
                                        th:field="*{terms}" th:text="#{terms.text}"/>
                                 <label class="control-label" for="terms"><a href="#">terms and conditions</a>.</label>
