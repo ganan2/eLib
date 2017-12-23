@@ -1,15 +1,19 @@
 /* Layout begins */
 
 @charset "ISO-8859-1";
+@font-face {
+ font-family: GreatVibes;
+ src: url(../fonts/GreatVibes-Regular.otf);
+}
 
 html {
     overflow:auto;
-    font-family: roboto;
 }
 
 body {
     padding-top: 50px;
     font-size: 12px;
+    /* font-family: "roboto"; */
 }
 
 input,textarea,.uneditable-input{
@@ -86,10 +90,11 @@ div {
 /* Layout ends */
 /* Custom */
 
-.elib-caption {
+col-xs-8 .elib-caption {
     font-size: 24px;
     font-color: #fff;
     text-align: center;
+    font-family: GreatVibes;
 }
 
 /* Forms and Buttons */

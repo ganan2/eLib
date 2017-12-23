@@ -27,7 +27,7 @@ public class ContactUsController {
     @RequestMapping(value = "/contact", method = RequestMethod.POST)
     public String saveFeedback(@ModelAttribute("contact_us") @Valid ContactUs contactUs){
         contactUsRepository.save(contactUs);
-        return "contact";
+        return "redirect:/contact?success";
     }
 
 }
