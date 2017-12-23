@@ -1,4 +1,4 @@
-package com.elib.api.controlller;
+package com.elib.api.controller;
 
 import com.elib.api.domain.User;
 import com.elib.api.domain.security.UserRole;
