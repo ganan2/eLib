@@ -27,6 +27,11 @@
                             <div th:if="${param.success}">
                                 <div class="alert alert-info">Thank you. We appreciate your feedback.</div>
                             </div>
+                            <div th:if="${param.maintenance}">
+                                <div class="alert alert-info">
+                                    We apologize but our website is currently under maintenance and updation.
+                                    Please tell us what you were looking for or try again later.</div>
+                            </div>
                         </div>
 
                         <div class="well well-sm">

@@ -39,7 +39,10 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByEmail(email);
     }
 
-    public User createUser(User user, Set<UserRole> userRoles) {
+    public boolean createUser(User user, Set<UserRole> userRoles) {
+
+        boolean isUserCreated = false;
+
         User localUser = userRepository.findByUsername(user.getUsername());
 
         if (localUser != null) {
@@ -55,9 +58,10 @@ public class UserServiceImpl implements UserService{
             user.getUserRoles().addAll(userRoles);
 
             localUser = userRepository.save(user);
+            isUserCreated = true;
         }
 
-        return localUser;
+        return true;
     }
 
     public boolean checkUserExists(String username, String email){

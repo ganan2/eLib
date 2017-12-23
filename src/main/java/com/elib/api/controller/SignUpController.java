@@ -60,9 +60,11 @@ public class SignUpController {
 
             Set<UserRole> userRoles = new HashSet<>();
             userRoles.add(new UserRole(user, roleRepository.findByName("ROLE_USER")));
-            userService.createUser(user, userRoles);
+            if(userService.createUser(user, userRoles)){
+                return "redirect:/signup?success";
+            } else {
+                return "redirect:/signup?error";
+            }
         }
-
-            return "redirect:/signup?success";
     }
 }
