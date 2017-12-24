@@ -1,0 +1,113 @@
+<!-- https://bootsnipp.com/snippets/vlOZ6 -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header"/>
+<body>
+<!-- Top most container: Includes everything  -->
+<div class="container-1" id="overall">
+    <div th:replace="common/navbar :: common-navbar"/>
+    <!-- Global container: includes everything other than headers or navbar & footers -->
+    <div class="globalContainer" id="globalContent">
+        <!-- Content container: Includes padding between headers or navbars and footers-->
+        <div class="content-container clearfix" id="content">
+
+            <div class="row">
+                <span><legend><h1 class="h1">Chat Rooms</h1></legend></span>
+            </div>
+
+            <div class="row">
+                <legend><span class="glyphicon glyphicon-phone-alt"></span> Create Room</legend>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8">
+
+                        <div class="row">
+                            <div th:if="${param.success}">
+                                <div class="alert alert-info">Room created.</div>
+                            </div>
+                            <div th:if="${param.maintenance}">
+                                <div class="alert alert-info">
+                                    We apologize but our website is currently under maintenance and updation.
+                                    Please tell us what you were looking for or try again later.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="well well-sm">
+                            <form th:action="@{/room}" th:object="${room}" method="post">
+
+                                <p class="error-message"
+                                   th:if="${#fields.hasGlobalErrors()}"
+                                   th:each="error : ${#fields.errors('global')}"
+                                   th:text="${error}">Validation error</p>
+
+                                <div class="row">
+                                    <div class="col-xs-8">
+                                        <div class="form-group"
+                                             th:classappend="${#fields.hasErrors('title')}? 'has-error':''">
+                                            <label for="title">
+                                                Title</label>
+                                            <input type="text" class="form-control" id="title" placeholder="Enter title"
+                                                   required="required" th:field="*{title}"/>
+                                            <p class="error-message"
+                                               th:each="error: ${#fields.errors('title')}"
+                                               th:text="${error}">Validation error</p>
+                                        </div>
+                                        <div class="form-group"
+                                             th:classappend="${#fields.hasErrors('subject')}? 'has-error':''">
+                                            <label for="subject">
+                                                subject</label>
+                                            <input type="text" class="form-control" id="subject" placeholder="Enter subject"
+                                                   required="required" th:field="*{subject}"/>
+                                            <p class="error-message"
+                                               th:each="error: ${#fields.errors('subject')}"
+                                               th:text="${error}">Validation error</p>
+                                        </div>
+                                        <div class="col-xs-8">
+                                            <div class="form-group"
+                                                 th:classappend="${#fields.hasErrors('description')}? 'has-error':''">
+                                                <label for="description">Description</label>
+                                                <textarea name="description" id="description" class="form-control" rows="9"
+                                                          cols="25"
+                                                          required="required"
+                                                          placeholder="Description" th:field="*{description}"></textarea>
+                                                <p class="error-message"
+                                                   th:each="error: ${#fields.errors('description')}"
+                                                   th:text="${error}">Validation error</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <button type="submit" class="btn btn-primary pull-right" id="btnCreateRoom">
+                                                Create Room
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+            <span>
+                <legend><span class="glyphicon glyphicon-send"></span> Pilot</legend>
+                <label class="control-label">What to do next?</label>
+                <div th:text="#{room.pilot.text}"/>
+            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Global container ends -->
+
+    <!-- Footer -->
+    <!-- Footer ends -->
+
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <div th:replace="common/header :: before-body-scripts"/>
+    <!-- Body bottom scripts end  -->
+</div> <!-- Container-1: Top most container ends -->
+</body>
+</html>

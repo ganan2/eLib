@@ -105,6 +105,20 @@ col-xs-8 .elib-caption {
     border-radius: 3px;
 }
 
+.btn-purple, .btn-purple:active {
+    background-color: #ad69ad;
+    border-color: #ad69ad;
+    color: #ffffff;
+    border-radius: 3px;
+}
+
+.btn-purple:hover {
+    background-color: #753682;
+    border-color: #753682;
+    color: #d8d6d8;
+    border-radius: 3px;
+}
+
 .btn {
     font-weight: 500;
     border-width: 0px;
@@ -190,6 +204,9 @@ col-xs-8 .elib-caption {
 .navbar {
     margin-bottom: 20px;
     overflow: visible;
+    background: #EAEAEA;
+    border:2;
+    border-color: #DCDCDC;
 }
 
 /* Footer Section */

@@ -45,10 +45,24 @@ public class User implements UserDetails {
     @JsonIgnore
     private boolean terms;
     private boolean enabled=true;
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "room_id")
+    private Room room;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
+
+    public boolean isTerms() {
+        return terms;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
     public Long getUserId() {
         return userId;
@@ -177,8 +191,9 @@ public class User implements UserDetails {
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", email='").append(email).append('\'');
         sb.append(", confirmEmail='").append(confirmEmail).append('\'');
-        sb.append(", terms='").append(terms).append('\'');
+        sb.append(", terms=").append(terms);
         sb.append(", enabled=").append(enabled);
+        sb.append(", room=").append(room);
         sb.append(", userRoles=").append(userRoles);
         sb.append('}');
         return sb.toString();

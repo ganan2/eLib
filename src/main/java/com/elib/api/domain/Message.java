@@ -28,4 +28,7 @@ public class Message implements Serializable{
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "chatId")
 	private ChatTemplate chatTemplate;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "room_id")
+	private Room room;
 }
