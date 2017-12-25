@@ -1,53 +1,90 @@
+<!-- https://bootsnipp.com/snippets/vlOZ6 -->
 <!DOCTYPE html>
-<html>
-  <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
-      <title>Spring Boot WebSocket Chat Application</title>
-      <link rel="stylesheet" href="/css/index/main.css" />
-  </head>
-  <body>
-    <noscript>
-      <h2>Sorry! Your browser doesn't support Javascript</h2>
-    </noscript>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header"/>
+<body>
+<link rel="stylesheet" href="/css/index/main.css"/>
+<!-- Top most container: Includes everything  -->
+<div class="container-1" id="overall">
+    <div th:replace="common/navbar :: common-navbar"/>
+    <!-- Global container: includes everything other than headers or navbar & footers -->
+    <div class="globalContainer" id="globalContent">
+        <!-- Content container: Includes padding between headers or navbars and footers-->
+        <div class="content-container clearfix" id="content">
 
-    <div id="username-page">
-        <div class="username-page-container">
-            <h1 class="title">Type your username</h1>
-            <form id="usernameForm" name="usernameForm">
-                <div class="form-group">
-                    <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="accent username-submit">Start Chatting</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div id="chat-page" class="hidden">
-        <div class="chat-container">
-            <div class="chat-header">
-                <h2>Spring WebSocket Chat Demo</h2>
+            <div class="row">
+                <span><legend><h1 class="h1">Swarmer</h1></legend></span>
             </div>
-            <div class="connecting">
-                Connecting...
-            </div>
-            <ul id="messageArea">
 
-            </ul>
-            <form id="messageForm" name="messageForm" nameForm="messageForm">
-                <div class="form-group">
-                    <div class="input-group clearfix">
-                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                        <button type="submit" class="primary">Send</button>
+            <div class="row">
+                <legend><span class="glyphicon glyphicon-comment"></span> Start a swarmer</legend>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="row">
+                            <div id="username-page">
+                                <div class="username-page-container">
+                                    <h1 class="title">Enter your name</h1>
+                                    <form id="usernameForm" name="usernameForm">
+                                        <div class="form-group">
+                                            <input type="text" id="name" placeholder="Name" autocomplete="off"
+                                                   class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-swarm btn-form display-4">Swarm
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="chat-page" class="hidden">
+                                <div class="chat-container">
+                                    <div class="chat-header">
+                                        <h2>Swarm</h2>
+                                    </div>
+                                    <div class="connecting">
+                                        Connecting...
+                                    </div>
+                                    <ul id="messageArea">
+
+                                    </ul>
+                                    <form id="messageForm" name="messageForm" nameForm="messageForm">
+                                        <div class="row">
+                                            <input type="text" id="message" placeholder="Type a message..."
+                                                   autocomplete="off"
+                                                   class="form-control"/>
+                                        </div>
+                                        <div class="row">
+                                            <button type="submit" class="btn btn-swarm pull-right">Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-2">
+                        <span>
+                            <legend><span class="glyphicon glyphicon-ok"></span> Email this chat</legend>
+                            <div><label class="glyphicon glyphicon-exclamation-sign"></label>
+                            An email will be sent to the account you have used to register on eLib.</div>
+                            <button type="no-action" class="btn btn-swarm btn-xs glyphicon glyphicon-envelope pull-right"/>
+                        </span>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
+</div>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/js/index/sockjs.min.js"></script>
+<script src="/js/index/stomp.min.js"></script>
+<script src="/js/index/main.js"></script>
+<div th:replace="common/header :: before-body-scripts"/>
+<!-- Body bottom scripts end  -->
 
-    <script src="/js/index/sockjs.min.js"></script>
-    <script src="/js/index/stomp.min.js"></script>
-    <script src="/js/index/main.js"></script>
-  </body>
+</body>
 </html>

@@ -4,32 +4,21 @@
     box-sizing: border-box;
 }
 
-html,body {
-    height: 100%;
-    overflow: hidden;
+html {
+    overflow:auto;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-weight: 400;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.58;
-    color: #333;
-    background-color: #f4f4f4;
-    height: 100%;
+    padding-top: 50px;
+    font-size: 12px;
 }
 
-body:before {
-    height: 50%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #128ff2;
-    content: "";
-    z-index: 0;
+input {
+    width: 100% !important
+}
+
+div {
+    display: block;
 }
 
 .clearfix:after {
@@ -42,21 +31,182 @@ body:before {
     display: none;
 }
 
-.form-control {
-    width: 100%;
-    min-height: 38px;
-    font-size: 15px;
-    border: 1px solid #c8c8c8;
+.btn-primary, .btn-primary:active {
+    background-color: #149dcc;
+    border-color: #149dcc;
+    color: #ffffff;
+    border-radius: 3px;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.btn-purple, .btn-purple:active {
+    background-color: #ad69ad;
+    border-color: #ad69ad;
+    color: #ffffff;
+    border-radius: 3px;
+}
+
+.btn-purple:hover {
+    background-color: #753682;
+    border-color: #753682;
+    color: #d8d6d8;
+    border-radius: 3px;
+}
+
+.btn .btn-swarm {
+    background-color: #9b9b9b;
+    border-color: #9b9b9b;
+    color: #d8d6d8;
+    border-radius: 3px;
+}
+
+.btn-swarm:hover {
+    background-color: #4c4c4c;
+    border-color: #4c4c4c;
+    color: #d8d6d8;
+    border-radius: 3px;
+}
+
+.btn {
+    font-weight: 500;
+    border-width: 0px;
+    font-style: normal;
+    letter-spacing: 1px;
+    margin: .4rem .8rem;
+    white-space: normal;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    padding: 1rem 3rem;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word;
+    border-radius: 3px;
+}
+
+.button {
+    font-weight: 500;
+    border-width: 0px;
+    font-style: normal;
+    letter-spacing: 1px;
+    white-space: normal;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    word-break: break-word;
+    border-radius: 3px;
+}
+
+.btn .btn-primary {
+    position: absolute;
+	text-align:center;
+}
+
+.btn .btn-success {
+    position: absolute;
+	text-align:center;
+}
+
+.button {
+	display:block;
+	text-align:center;
+}
+
+.form-control {
+    background: #fff;
+    color: #939598;
+    border-radius: 30px;
+    box-shadow: none;
+    width: 100%;
+    border: 1px solid #f1f2f2;
+}
+
+.display-4 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1rem;
 }
 
 input {
     padding-left: 10px;
     outline: none;
 }
+
+/* Navbar */
+
+.navbar-fixed-top {
+    top: 0;
+}
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    margin-bottom: 0;
+}
+
+.navbar {
+    margin-bottom: 20px;
+    overflow: visible;
+    background: #EAEAEA;
+    border:2;
+    border-color: #DCDCDC;
+}
+
+/* Navbar ends */
+/* Containers */
+#left-content .left-subparams{
+    overflow: visible;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-right: 48px;
+}
+
+.content-container .left_content {
+    flex: 1 0 0px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0px;
+}
+
+.content-container .right_content {
+    float: none;
+
+}
+
+.left_content, .right_content {
+    word-wrap: break-word;
+}
+
+.right-subparams {
+    width: 600px !important;
+}
+
+.content-container{
+    width: 980px;
+    margin: auto;
+
+    padding-right=20px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.container-left{
+    padding-right: 48px;
+}
+
+.container-right{
+    width: 400px;
+}
+
+/* Container ends */
 
 h1, h2, h3, h4, h5, h6 {
     margin-top: 20px;
@@ -71,39 +221,6 @@ a {
     color: #128ff2;
 }
 
-button {
-    box-shadow: none;
-    border: 1px solid transparent;
-    font-size: 14px;
-    outline: none;
-    line-height: 100%;
-    white-space: nowrap;
-    vertical-align: middle;
-    padding: 0.6rem 1rem;
-    border-radius: 2px;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    min-height: 38px;
-}
-
-button.default {
-    background-color: #e8e8e8;
-    color: #333;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-}
-
-button.primary {
-    background-color: #128ff2;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
-}
-
-button.accent {
-    background-color: #ff4743;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
-}
-
 #username-page {
     text-align: center;
 }
@@ -112,20 +229,17 @@ button.accent {
     background: #fff;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 2px;
+    height:25%;
     width: 100%;
     max-width: 500px;
     display: inline-block;
     margin-top: 42px;
     vertical-align: middle;
-    position: relative;
     padding: 35px 55px 35px;
-    min-height: 250px;
-    position: absolute;
     top: 50%;
     left: 0;
     right: 0;
     margin: 0 auto;
-    margin-top: -160px;
 }
 
 .username-page-container .username-submit {
@@ -158,6 +272,7 @@ button.accent {
     overflow-y: scroll;
     padding: 0 20px 0px 20px;
     height: calc(100% - 150px);
+    height: 400px;
 }
 
 #chat-page #messageForm {
