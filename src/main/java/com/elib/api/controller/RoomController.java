@@ -20,6 +20,7 @@ public class RoomController {
     @RequestMapping(value = "/room", method = RequestMethod.GET)
     public String getFeedback(Model model){
         Room room = new Room();
+        model.addAttribute("room", room);
         return "room";
     }
 
