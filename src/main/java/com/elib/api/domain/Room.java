@@ -27,8 +27,6 @@ public class Room implements Serializable {
     private Date dateDeleted;
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<User> userList = new HashSet<>();
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Message> messageList = new HashSet<>();
 
     public String getDescription() {
         return description;
@@ -94,14 +92,6 @@ public class Room implements Serializable {
         this.userList = userList;
     }
 
-    public Set<Message> getMessageList() {
-        return messageList;
-    }
-
-    public void setMessageList(Set<Message> messageList) {
-        this.messageList = messageList;
-    }
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Room{");
@@ -113,7 +103,6 @@ public class Room implements Serializable {
         sb.append(", dateCreated=").append(dateCreated);
         sb.append(", dateDeleted=").append(dateDeleted);
         sb.append(", userList=").append(userList);
-        sb.append(", messageList=").append(messageList);
         sb.append('}');
         return sb.toString();
     }
