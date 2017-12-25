@@ -51,6 +51,17 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="contacts_id")
+    private Contacts contacts;
+
+    public Contacts getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(Contacts contacts) {
+        this.contacts = contacts;
+    }
 
     public boolean isTerms() {
         return terms;
@@ -195,6 +206,7 @@ public class User implements UserDetails {
         sb.append(", enabled=").append(enabled);
         sb.append(", room=").append(room);
         sb.append(", userRoles=").append(userRoles);
+        sb.append(", contacts=").append(contacts);
         sb.append('}');
         return sb.toString();
     }
