@@ -9,10 +9,21 @@ import java.util.Set;
 public class Contacts implements Serializable{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long contactId;
 
+    private String username;
+
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<User> userList = new HashSet<>();
+    private Set<User> userSet = new HashSet<>();
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String userName) {
+        this.username = userName;
+    }
 
     public Long getContactId() {
         return contactId;
@@ -22,19 +33,20 @@ public class Contacts implements Serializable{
         this.contactId = contactId;
     }
 
-    public Set<User> getUserList() {
-        return userList;
+    public Set<User> getUserSet() {
+        return userSet;
     }
 
-    public void setUserList(Set<User> userList) {
-        this.userList = userList;
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Contacts{");
         sb.append("contactId=").append(contactId);
-        sb.append(", userList=").append(userList);
+        sb.append(", userName='").append(username).append('\'');
+        sb.append(", userList=").append(userSet);
         sb.append('}');
         return sb.toString();
     }

@@ -4,7 +4,7 @@
 <body>
 
 <div th:fragment="common-navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -27,6 +27,9 @@
                     <button type="no-action" class="btn btn-default btn-xs" th:text="#{navbar.swarm.text}"/></form></li>
                 <li><form id="navbar-buttons-contacts" th:action="@{/contacts}" role="form" class="navbar-form">
                     <button type="no-action" class="btn btn-default btn-xs" th:text="#{navbar.contacts.text}"/></form></li>
+                <li><form class="navbar-form navbar-left">
+                    <div class="form-group"><input type="text" placeholder="Search" class="form-control"/></div>
+                    <button type="submit" class="btn btn-primary glyphicon glyphicon-search"/></form></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

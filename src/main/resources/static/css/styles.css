@@ -1,5 +1,9 @@
 /* Layout begins */
 
+legend{
+    white-space: nowrap;
+}
+
 @charset "ISO-8859-1";
 @font-face {
  font-family: GreatVibes;
@@ -269,3 +273,5 @@ color: #FFF;
 font-size: 12px;
 margin: 20px;
 }
+
+

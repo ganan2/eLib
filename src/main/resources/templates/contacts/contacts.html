@@ -1,7 +1,9 @@
 <!-- https://bootsnipp.com/snippets/vlOZ6 -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/header :: common-header"/>
+<head th:replace="common/header :: common-header">
+    <link th:href="@{/css/contacts.css}" rel="stylesheet" media="screen"/>
+</head>
 <body>
 <!-- Top most container: Includes everything  -->
 <div class="container-1" id="overall">
@@ -18,9 +20,60 @@
             <div class="row">
                 <legend><span class="glyphicon glyphicon-list-alt"></span> Manage contacts and friends</legend>
             </div>
-            <div class="container marketing">
+            <div class="container">
                 <div class="col-xs-8">
-
+                    <fieldset>
+                        <legend><h3><span class="glyphicon glyphicon-search"></span> Look up contacts</h3></legend>
+                    </fieldset>
+                    <fieldset>
+                        <div class="container">
+                            <div class="row">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target=".bs-example-modal-lg">Search contacts</button>
+                                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div id="custom-search-input">
+                                                <div class="input-group col-md-12">
+                                                    <input id="search" type="text" class="form-control input-lg" placeholder="Search" />
+                                                </div>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">Cras justo odio</li>
+                                                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                                                    <li class="list-group-item">Morbi leo risus</li>
+                                                    <li class="list-group-item">Porta ac consectetur ac</li>
+                                                    <li class="list-group-item">Vestibulum at eros</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                            <legend><h3><span class="glyphicon glyphicon-th-list"></span> Your contacts</h3></legend>
+                    </fieldset>
+                    <fieldset>
+                        <div class="table-responsive">
+                            <table id="example" class="table table-bordered table-hover table-striped">
+                                <thead>
+                                <tr>
+                                    <th>First name</th>
+                                    <th>Last name</th>
+                                    <th>Email</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-th-each="contacts : ${userSet}">
+                                    <td data-th-text="${contacts.firstName}">...</td>
+                                    <td data-th-text="${contacts.lastName}">...</td>
+                                    <td data-th-text="${contacts.email}">...</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </fieldset>
                 </div>
                 <div class="col-xs-2">
                         <span>
@@ -29,7 +82,7 @@
                             <div th:text="#{room.pilot.text}"/>
                         </span>
                 </div>
-            </div><!-- Marketing container -->
+            </div>
         </div> <!-- Content container -->
     </div> <!-- Global container ends -->
 
@@ -37,6 +90,11 @@
     <!-- Footer ends -->
     <!-- Body bottom scripts  -->
     <div th:replace="common/header :: before-body-scripts"/>
+    <script th:src="@{/js/contacts/dataTables.bootstrap.min.js}"></script>
+    <script th:src="@{/js/contacts/dataTables.jqueryui.min.js}"></script>
+    <script th:src="@{/js/contacts/dataTables.uikit.min.js}"></script>
+    <script th:src="@{/js/contacts/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/js/contacts/contacts.js}"></script>
     <!-- Body bottom scripts end  -->
 </div> <!-- Container-1: Top most container ends -->
 </body>

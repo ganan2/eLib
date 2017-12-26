@@ -20,4 +20,5 @@ public interface UserService {
 	void save (User user);
 
 	boolean createUser(User user, Set<UserRole> userRoles);
+
 }
