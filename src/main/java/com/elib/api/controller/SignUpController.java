@@ -33,7 +33,6 @@ public class SignUpController {
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {
         User user = new User();
-
         model.addAttribute("user", user);
 
         return "signup";

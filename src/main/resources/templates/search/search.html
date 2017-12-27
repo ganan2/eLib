@@ -1,0 +1,77 @@
+<!-- https://bootsnipp.com/snippets/vlOZ6 -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header"/>
+<body>
+<!-- Top most container: Includes everything  -->
+<div class="container-1" id="overall">
+    <div th:replace="common/navbar :: common-navbar"/>
+    <!-- Global container: includes everything other than headers or navbar & footers -->
+    <div class="globalContainer" id="globalContent">
+        <!-- Content container: Includes padding between headers or navbars and footers-->
+        <div class="content-container clearfix" id="content">
+
+            <div class="row">
+                <span><legend><h1 class="h1">Search</h1></legend></span>
+            </div>
+
+            <div class="row">
+                <legend><span class="glyphicon glyphicon-list-alt"></span> Results</legend>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8">
+                        <fieldset>
+                            <form class="navbar-form navbar-left" th:action="@{/search}" method="post"
+                                  th:object="${search}">
+                                <div class="form-group"><input type="text" placeholder="Search" class="form-control"
+                                                               th:field="*{keyword}"/></div>
+                                <button type="submit" class="btn btn-primary glyphicon glyphicon-search"/>
+                            </form>
+                        </fieldset>
+                        <fieldset>
+                            <div class="table-responsive">
+                                <table id="example" class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>First name</th>
+                                        <th>Last name</th>
+                                        <th>Email</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr data-th-each="searchResults : ${searchResults}">
+                                        <td data-th-text="${searchResults.firstName}">...</td>
+                                        <td data-th-text="${searchResults.lastName}">...</td>
+                                        <td data-th-text="${searchResults.email}">...</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </fieldset>
+
+                    </div>
+                    <div class="col-xs-2">
+                        <span>
+                            <legend><span class="glyphicon glyphicon-send"></span> Pilot</legend>
+                            <label class="control-label">What to do next?</label>
+                            <div th:text="#{room.pilot.text}"/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Global container ends -->
+
+    <!-- Footer -->
+    <!-- Footer ends -->
+
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <div th:replace="common/header :: before-body-scripts"/>
+    <!-- Body bottom scripts end  -->
+</div> <!-- Container-1: Top most container ends -->
+</body>
+</html>

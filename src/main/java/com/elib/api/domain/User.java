@@ -54,6 +54,8 @@ public class User implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="contacts_id")
     private Contacts contacts;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Search> search;
 
     public Contacts getContacts() {
         return contacts;
@@ -61,6 +63,14 @@ public class User implements UserDetails {
 
     public void setContacts(Contacts contacts) {
         this.contacts = contacts;
+    }
+
+    public Set<Search> getSearch() {
+        return search;
+    }
+
+    public void setSearch(Set<Search> search) {
+        this.search = search;
     }
 
     public boolean isTerms() {
@@ -207,6 +217,7 @@ public class User implements UserDetails {
         sb.append(", room=").append(room);
         sb.append(", userRoles=").append(userRoles);
         sb.append(", contacts=").append(contacts);
+        sb.append(", search=").append(search);
         sb.append('}');
         return sb.toString();
     }

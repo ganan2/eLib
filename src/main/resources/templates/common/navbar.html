@@ -27,9 +27,8 @@
                     <button type="no-action" class="btn btn-default btn-xs" th:text="#{navbar.swarm.text}"/></form></li>
                 <li><form id="navbar-buttons-contacts" th:action="@{/contacts}" role="form" class="navbar-form">
                     <button type="no-action" class="btn btn-default btn-xs" th:text="#{navbar.contacts.text}"/></form></li>
-                <li><form class="navbar-form navbar-left">
-                    <div class="form-group"><input type="text" placeholder="Search" class="form-control"/></div>
-                    <button type="submit" class="btn btn-primary glyphicon glyphicon-search"/></form></li>
+                <li><form id="navbar-buttons-search" th:action="@{/search}" role="form" class="navbar-form">
+                    <button type="no-action" class="btn btn-default btn-xs" th:text="#{navbar.search.text}"/></form></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
