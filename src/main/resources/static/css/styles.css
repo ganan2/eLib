@@ -5,10 +5,6 @@ legend{
 }
 
 @charset "ISO-8859-1";
-@font-face {
- font-family: GreatVibes;
- src: url(../fonts/GreatVibes-Regular.otf);
-}
 
 html {
     overflow:auto;
@@ -207,9 +203,12 @@ col-xs-8 .elib-caption {
 .navbar {
     margin-bottom: 20px;
     overflow: visible;
-    background: #EAEAEA;
+    background: #000;
     border:2;
     border-color: #DCDCDC;
+    opacity: 0.8;
+    filter: alpha(opacity=50);
+    background: linear-gradient(-90deg, #8f68a0, #666699);
 }
 
 /* Footer Section */

@@ -51,17 +51,16 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="contacts_id")
-    private Contacts contacts;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Contacts> contacts;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Search> search;
 
-    public Contacts getContacts() {
+    public Set<Contacts> getContacts() {
         return contacts;
     }
 
-    public void setContacts(Contacts contacts) {
+    public void setContacts(Set<Contacts> contacts) {
         this.contacts = contacts;
     }
 

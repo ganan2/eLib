@@ -2,51 +2,48 @@ package com.elib.api.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Contacts implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long contactId;
+    private Long id;
+    private String keyword;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    private String username;
-
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<User> userSet = new HashSet<>();
-
-    public String getUsername() {
-        return username;
+    public Long getId() {
+        return id;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getContactId() {
-        return contactId;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setContactId(Long contactId) {
-        this.contactId = contactId;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
-    public Set<User> getUserSet() {
-        return userSet;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Contacts{");
-        sb.append("contactId=").append(contactId);
-        sb.append(", userName='").append(username).append('\'');
-        sb.append(", userList=").append(userSet);
+        sb.append("id=").append(id);
+        sb.append(", keyword='").append(keyword).append('\'');
+        sb.append(", user=").append(user);
         sb.append('}');
         return sb.toString();
     }

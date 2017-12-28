@@ -58,7 +58,6 @@ public class UserServiceImpl implements UserService{
             user.getUserRoles().addAll(userRoles);
 
             localUser = userRepository.save(user);
-            isUserCreated = true;
         }
 
         return true;

@@ -156,6 +156,8 @@ input {
     background: #EAEAEA;
     border:2;
     border-color: #DCDCDC;
+    background: linear-gradient(-90deg, #8f68a0, #666699);
+
 }
 
 /* Navbar ends */
