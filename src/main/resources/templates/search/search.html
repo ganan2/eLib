@@ -49,6 +49,13 @@
                                     <tr data-th-each="searchResults : ${searchResults}">
                                         <td data-th-text="${searchResults.firstName}">...</td>
                                         <td data-th-text="${searchResults.lastName}">...</td>
+                                        <td>
+                                            <div id="add">
+                                                <button type="button" class="btn btn-primary"
+                                                        onclick="pushToContacts()">Push to contacts
+                                                </button>
+                                            </div>
+
                                         </td>
                                     </tr>
                                     </tbody>
@@ -56,6 +63,7 @@
                             </div>
                         </fieldset>
                     </div>
+
                     <div class="col-xs-2">
                         <span>
                             <legend><span class="glyphicon glyphicon-send"></span> Pilot</legend>
@@ -75,6 +83,8 @@
         ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <div th:replace="common/header :: before-body-scripts"/>
+    <script th:src="@{/js/contacts/ajax.js}"></script>
+    <script th:src="@{/js/contacts/ajaxFunction.js}"></script>
     <!-- Body bottom scripts end  -->
 </div> <!-- Container-1: Top most container ends -->
 </body>
