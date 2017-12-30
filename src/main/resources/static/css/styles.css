@@ -206,7 +206,7 @@ col-xs-8 .elib-caption {
     background: #000;
     border:2;
     border-color: #DCDCDC;
-    opacity: 0.8;
+    opacity: 1.0;
     filter: alpha(opacity=50);
     background: linear-gradient(-90deg, #8f68a0, #666699);
 }

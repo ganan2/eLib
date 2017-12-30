@@ -50,12 +50,14 @@
                                         <td data-th-text="${searchResults.firstName}">...</td>
                                         <td data-th-text="${searchResults.lastName}">...</td>
                                         <td>
-                                            <div id="add">
-                                                <button type="button" class="btn btn-primary"
-                                                        onclick="pushToContacts()">Push to contacts
-                                                </button>
-                                            </div>
-
+                                            <button id="add"
+                                                    type="button"
+                                                    class="btn btn-primary"
+                                                    th:data="${searchResults.username}"
+                                                    onclick="pushToContacts(this.getAttribute('data'))">
+                                                    Push to contacts
+                                                    <!-- onclick="pushToContacts(this.getAttribute('data-th-text'))"> -->
+                                            </button>
                                         </td>
                                     </tr>
                                     </tbody>
