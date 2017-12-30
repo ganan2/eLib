@@ -9,9 +9,10 @@ public class AddController {
 
     private org.slf4j.Logger LOG = LoggerFactory.getLogger(AddController.class);
 
-    @RequestMapping(value = "/add", params = "username")
-    public void getContact(@PathVariable String username){
+    @RequestMapping(value = "/add")
+    public @ResponseBody String getContact(@RequestParam("username") String username){
 
-        String string = null;
+        String status = "Added";
+        return status;
     }
 }
