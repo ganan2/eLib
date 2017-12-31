@@ -53,8 +53,6 @@ public class User implements UserDetails {
     private Set<UserRole> userRoles = new HashSet<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Contacts> contacts;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Search> search;
 
     public Set<Contacts> getContacts() {
         return contacts;
@@ -62,14 +60,6 @@ public class User implements UserDetails {
 
     public void setContacts(Set<Contacts> contacts) {
         this.contacts = contacts;
-    }
-
-    public Set<Search> getSearch() {
-        return search;
-    }
-
-    public void setSearch(Set<Search> search) {
-        this.search = search;
     }
 
     public boolean isTerms() {
@@ -216,7 +206,6 @@ public class User implements UserDetails {
         sb.append(", room=").append(room);
         sb.append(", userRoles=").append(userRoles);
         sb.append(", contacts=").append(contacts);
-        sb.append(", search=").append(search);
         sb.append('}');
         return sb.toString();
     }
