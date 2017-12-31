@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,53 +22,27 @@ public class ContactsController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ContactsRepository contactsRepository;
-
-    @Autowired
-    private UserService userService;
-
-    private Boolean contactsSearchFlag = false;
-
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)
-    public String contactsGet(Model model) {
-        Contacts contacts = new Contacts();
-        model.addAttribute("contacts", contacts);
+    public String contactsGet() {
         return "/contacts/contacts";
     }
 
     @RequestMapping(value = "/contacts", method = RequestMethod.POST)
-    public String contactsPost(@ModelAttribute("contacts") Contacts contacts, Model model) {
+    public String contactsPost(@RequestParam String keyword, Model model) {
 
         Set<User> contactsSearchResults = new HashSet<>();
         Set<User> userSet = userRepository.findAll();
         userSet.forEach(e -> {
-            if (e.getUsername().contains(contacts.getKeyword())) {
+            if (e.getUsername().contains(keyword)
+                    || e.getEmail().contains(keyword)
+                    || e.getFirstName().contains(keyword)
+                    || e.getLastName().contains(keyword)) {
                 contactsSearchResults.add(e);
-                contactsSearchFlag = true;
-            }
-
-            if (e.getEmail().contains(contacts.getKeyword())) {
-                contactsSearchResults.add(e);
-                contactsSearchFlag = true;
-            }
-
-            if (e.getFirstName().contains(contacts.getKeyword())) {
-                contactsSearchResults.add(e);
-                contactsSearchFlag = true;
-            }
-
-            if (e.getLastName().contains(contacts.getKeyword())) {
-                contactsSearchResults.add(e);
-                contactsSearchFlag = true;
             }
         });
 
-        if(contactsSearchFlag == true){
-            contactsRepository.save(contacts);
-        }
         model.addAttribute("contactSearchResults", contactsSearchResults);
-        return "contacts/search";
+        return "contacts/contacts";
     }
 
 }

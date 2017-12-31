@@ -17,11 +17,6 @@ public class SearchController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private UserService userService;
-
-    private Boolean searchFlag = false;
-
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchget(Model model) {
         return "/search/search";
