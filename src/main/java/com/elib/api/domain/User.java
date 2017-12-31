@@ -22,7 +22,6 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userId", nullable = false, updatable = false)
     private Long userId;
     @Size(min=6)
     @NotBlank
@@ -52,7 +51,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Contacts> contacts;
+    private Set<Contacts> contacts = new HashSet<>();
 
     public Set<Contacts> getContacts() {
         return contacts;

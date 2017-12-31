@@ -1,5 +1,7 @@
 package com.elib.api.service.serviceImpl;
 
+import com.elib.api.domain.Contacts;
+import com.elib.api.domain.User;
 import com.elib.api.repositories.ContactsRepository;
 import com.elib.api.service.ContactsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,4 +13,13 @@ public class ContactsServiceImpl implements ContactsService {
     @Autowired
     private ContactsRepository contactsRepository;
 
+    @Override
+    public boolean createUserContactsList(User user){
+        Contacts contacts = new Contacts();
+        contacts.setUser(user);
+        user.getContacts().add(contacts);
+        contactsRepository.save(contacts);
+
+        return true;
+    }
 }
