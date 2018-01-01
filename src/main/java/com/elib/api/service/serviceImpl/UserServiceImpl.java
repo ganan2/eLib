@@ -7,7 +7,6 @@ import javax.transaction.Transactional;
 import com.elib.api.domain.Contacts;
 import com.elib.api.repositories.ContactsRepository;
 import com.elib.api.repositories.UserRoleRepository;
-import com.elib.api.service.ContactsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,13 +32,13 @@ public class UserServiceImpl implements UserService{
     private RoleRepository roleRepository;
 
     @Autowired
-    private ContactsService contactsService;
-
-    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRoleRepository userRoleRepository;
+
+    @Autowired
+    private ContactsRepository contactsRepository;
 
     public void save(User user) {
         userRepository.save(user);
@@ -70,9 +69,10 @@ public class UserServiceImpl implements UserService{
 
             user.getUserRoles().addAll(userRoles);
 
-            contactsService.createUserContactsList(user, user.getUsername());
-
             localUser = userRepository.save(user);
+
+            Contacts contacts = new Contacts(user.getUsername(), user);
+            contactsRepository.save(contacts);
         }
 
         return true;

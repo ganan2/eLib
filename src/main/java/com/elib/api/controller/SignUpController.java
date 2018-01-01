@@ -3,7 +3,6 @@ package com.elib.api.controller;
 import com.elib.api.domain.User;
 import com.elib.api.domain.security.Role;
 import com.elib.api.domain.security.UserRole;
-import com.elib.api.repositories.ContactsRepository;
 import com.elib.api.repositories.RoleRepository;
 import com.elib.api.service.UserService;
 import com.elib.api.service.serviceImpl.UserDetailsServiceImpl;
@@ -24,13 +23,11 @@ import java.util.Set;
 @Controller
 public class SignUpController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
     @Autowired
     private UserService userService;
-
     @Autowired
     private RoleRepository roleRepository;
-
-    private static final Logger LOG = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Model model) {
@@ -55,14 +52,14 @@ public class SignUpController {
             return "signup";
         } else {
 
-            if(bindingResult.hasErrors()){
+            if (bindingResult.hasErrors()) {
                 LOG.info("Errors------------------->> {}", bindingResult.getAllErrors());
             }
 
             Set<UserRole> userRoles = new HashSet<>();
 
             Role role = roleRepository.findByName("ROLE_USER");
-            if(role == null){
+            if (role == null) {
                 role = new Role();
                 role.setName("ROLE_USER");
                 role = roleRepository.save(role);
@@ -70,7 +67,7 @@ public class SignUpController {
 
             userRoles.add(new UserRole(user, roleRepository.findByName(role.getName())));
 
-            if(userService.createUser(user, userRoles)){
+            if (userService.createUser(user, userRoles)) {
                 return "redirect:/signup?success";
             } else {
                 return "redirect:/signup?error";

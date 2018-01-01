@@ -23,10 +23,8 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
-    @Size(min=6)
     @NotBlank
     private String username;
-    @Size(min=6)
     @NotBlank
     private String password;
     @JsonIgnore

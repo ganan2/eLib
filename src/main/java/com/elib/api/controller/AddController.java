@@ -4,7 +4,6 @@ import com.elib.api.domain.Contacts;
 import com.elib.api.domain.User;
 import com.elib.api.repositories.ContactsRepository;
 import com.elib.api.repositories.UserRepository;
-import com.elib.api.service.ContactsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
+import java.util.Iterator;
 
 @Controller
 public class AddController {
@@ -21,9 +21,6 @@ public class AddController {
 
     @Autowired
     private ContactsRepository contactsRepository;
-
-    @Autowired
-    private ContactsService contactsService;
 
     private static String isAdded = "Add";
 
@@ -37,7 +34,6 @@ public class AddController {
             if(username.equalsIgnoreCase(e.getUser().getUsername())){
                 isAdded = "Added";
             } else {
-                contactsService.createUserContactsList(loggedUser, username);
                 isAdded = "Added";
             }
         });

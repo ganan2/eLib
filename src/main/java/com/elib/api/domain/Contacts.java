@@ -15,6 +15,15 @@ public class Contacts implements Serializable{
 
     private String contactUsername;
 
+    public Contacts(){
+
+    }
+
+    public Contacts(String contactUsername, User user){
+        this.contactUsername = contactUsername;
+        this.user = user;
+    }
+
     public String getContactUsername() {
         return contactUsername;
     }
