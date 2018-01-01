@@ -13,6 +13,16 @@ public class Contacts implements Serializable{
     @JoinColumn(name = "user_id")
     private User user;
 
+    private String contactUsername;
+
+    public String getContactUsername() {
+        return contactUsername;
+    }
+
+    public void setContactUsername(String contactUsername) {
+        this.contactUsername = contactUsername;
+    }
+
     public Long getId() {
         return id;
     }
@@ -34,6 +44,7 @@ public class Contacts implements Serializable{
         final StringBuilder sb = new StringBuilder("Contacts{");
         sb.append("id=").append(id);
         sb.append(", user=").append(user);
+        sb.append(", contactUsername='").append(contactUsername).append('\'');
         sb.append('}');
         return sb.toString();
     }

@@ -1,6 +1,7 @@
 package com.elib.api.controller;
 
 import com.elib.api.domain.User;
+import com.elib.api.domain.security.Role;
 import com.elib.api.domain.security.UserRole;
 import com.elib.api.repositories.ContactsRepository;
 import com.elib.api.repositories.RoleRepository;
@@ -59,7 +60,15 @@ public class SignUpController {
             }
 
             Set<UserRole> userRoles = new HashSet<>();
-            userRoles.add(new UserRole(user, roleRepository.findByName("ROLE_USER")));
+
+            Role role = roleRepository.findByName("ROLE_USER");
+            if(role == null){
+                role = new Role();
+                role.setName("ROLE_USER");
+                role = roleRepository.save(role);
+            }
+
+            userRoles.add(new UserRole(user, roleRepository.findByName(role.getName())));
 
             if(userService.createUser(user, userRoles)){
                 return "redirect:/signup?success";

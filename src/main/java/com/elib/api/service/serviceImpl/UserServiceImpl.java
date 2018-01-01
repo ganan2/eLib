@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import com.elib.api.domain.Contacts;
 import com.elib.api.repositories.ContactsRepository;
+import com.elib.api.repositories.UserRoleRepository;
 import com.elib.api.service.ContactsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserRoleRepository userRoleRepository;
+
     public void save(User user) {
         userRepository.save(user);
     }
@@ -55,15 +59,18 @@ public class UserServiceImpl implements UserService{
             LOG.info("User with username {} already exist. Nothing will be done. ", user.getUsername());
         } else {
             String encryptedPassword = passwordEncoder.encode(user.getPassword());
+            String encryptedConfirmPassword = passwordEncoder.encode(user.getConfirmPassword());
             user.setPassword(encryptedPassword);
+            user.setConfirmPassword(encryptedConfirmPassword);
 
             for (UserRole ur : userRoles) {
+                userRoleRepository.save(ur);
                 roleRepository.save(ur.getRole());
             }
 
             user.getUserRoles().addAll(userRoles);
 
-            contactsService.createUserContactsList(user);
+            contactsService.createUserContactsList(user, user.getUsername());
 
             localUser = userRepository.save(user);
         }

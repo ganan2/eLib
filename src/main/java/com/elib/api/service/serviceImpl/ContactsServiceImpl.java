@@ -14,9 +14,10 @@ public class ContactsServiceImpl implements ContactsService {
     private ContactsRepository contactsRepository;
 
     @Override
-    public boolean createUserContactsList(User user){
+    public boolean createUserContactsList(User user, String username){
         Contacts contacts = new Contacts();
         contacts.setUser(user);
+        contacts.setContactUsername(username);
         user.getContacts().add(contacts);
         contactsRepository.save(contacts);
 

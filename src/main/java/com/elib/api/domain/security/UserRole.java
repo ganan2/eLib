@@ -14,7 +14,7 @@ import com.elib.api.domain.User;
 @Entity
 public class UserRole {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long userRoleId;
 
     public UserRole(User user, Role role) {

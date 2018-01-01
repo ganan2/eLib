@@ -4,6 +4,6 @@ import com.elib.api.domain.User;
 
 public interface ContactsService {
 
-    boolean createUserContactsList(User user);
+    boolean createUserContactsList(User user, String username);
 
 }
