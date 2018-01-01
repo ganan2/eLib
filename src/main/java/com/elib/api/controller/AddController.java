@@ -11,10 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 @Controller
 public class AddController {
+
+    private static String isAdded = "Add";
+
+    private static boolean addFlag = true;
 
     @Autowired
     private UserRepository userRepository;
@@ -22,21 +28,28 @@ public class AddController {
     @Autowired
     private ContactsRepository contactsRepository;
 
-    private static String isAdded = "Add";
-
-    // adding multiple users at a time results in concurrent modification exception. Lambdas may be required.
     @RequestMapping(value = "/add")
-    public @ResponseBody
-    String getContact(@RequestParam("username") String username, Principal principal) {
+    public @ResponseBody String getContact(@RequestParam("username") String username, Principal principal) {
+
         User loggedUser = userRepository.findByUsername(principal.getName());
 
-        loggedUser.getContacts().forEach(e -> {
-            if(username.equalsIgnoreCase(e.getUser().getUsername())){
+        Iterator<Contacts> iterator = loggedUser.getContacts().iterator();
+        while(iterator.hasNext()){
+            Contacts contacts = iterator.next(); // throws concurrent modification exception
+            if(contacts.getContactUsername().equalsIgnoreCase(loggedUser.getUsername())){
                 isAdded = "Added";
+                continue;
+            } else if(contacts.getContactUsername().equalsIgnoreCase(username)){
+                isAdded = "Added";
+                continue;
             } else {
-                isAdded = "Added";
+                Set<Contacts> contactsSet = new HashSet<>();
+                Contacts newContact = new Contacts(username, loggedUser);
+                contactsSet.add(newContact);
+                loggedUser.getContacts().addAll(contactsSet);
+                userRepository.save(loggedUser);
             }
-        });
+        }
 
         return isAdded;
 

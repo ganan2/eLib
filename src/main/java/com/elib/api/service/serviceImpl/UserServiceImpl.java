@@ -1,5 +1,6 @@
 package com.elib.api.service.serviceImpl;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -69,10 +70,11 @@ public class UserServiceImpl implements UserService{
 
             user.getUserRoles().addAll(userRoles);
 
-            localUser = userRepository.save(user);
-
+            Set<Contacts> contactsSet = new HashSet<>();
             Contacts contacts = new Contacts(user.getUsername(), user);
-            contactsRepository.save(contacts);
+            contactsSet.add(contacts);
+            user.getContacts().addAll(contactsSet);
+            localUser = userRepository.save(user);
         }
 
         return true;
